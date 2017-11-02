@@ -40,3 +40,7 @@ That package containes `fonts` folder with our fonts and it the funny thing is, 
 and
 
 ![Console tab](https://raw.githubusercontent.com/Devgaze/fusebox-example/master/src/assets/console-tab.png)  
+
+
+## Note
+Unfortunately I didn't know how to reproduce last issue (css resources) as I'm not aware of an npm package that has fonts included and due to company policy I was unable to present our real life example.
