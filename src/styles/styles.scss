@@ -1,0 +1,70 @@
+@import '~pyra-ui/dist/styles/variables';
+@import '~pyra-ui/dist/styles/pyra-styles';
+@import '~font-awesome/css/font-awesome.min';
+
+/*-------------------------------------
+ MAIN STYLES
+-------------------------------------*/
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: $font-family-sans-serif;
+  font-weight: 400;
+  line-height: $line-height-base;
+  background-color: $gray-lightest;
+  overflow-y: visible;
+}
+
+a {
+  text-decoration: none;
+  color: $gray-darker;
+}
+
+span.active {
+  background-color: $gray;
+}
+
+
+/*-------------------------------------
+  App Shared Styles
+  -----------------------------------*/
+
+h1 {
+  margin: 0;
+  padding: 20px 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: $gray-darker;
+  border-bottom: 0!important;
+}
+
+
+app
+{
+  .card-width
+  {
+    max-width: 1310px;
+
+    h1, h2, h3, h4, h5, h6
+    {
+      font-weight: 500;
+      border-bottom: none !important;
+    }
+
+    h1
+    {
+      font-size: 3.6rem;
+      padding-top: 1.1rem;
+      padding-bottom: .9rem;
+    }
+
+    .card
+    {
+      background-color: white;
+      padding: 3rem;
+    }
+  }
+}
