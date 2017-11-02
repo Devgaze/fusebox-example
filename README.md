@@ -34,8 +34,9 @@ Problem is you can't access `404` view by going directly to [http://localhost:70
 So, we have our in-house npm package which takes care of our corporate style guide. 
 That package containes `fonts` folder with our fonts and it the funny thing is, font's do get loaded in the page but I'm seeing following
 
-![Network tab](https://raw.githubusercontent.com/Devgaze/fusebox-example/master/assets/network-tab.jpg)  
+![Network tab](https://raw.githubusercontent.com/Devgaze/fusebox-example/master/src/assets/network-tab.png)
+
 
 and
 
-![Console tab](https://raw.githubusercontent.com/Devgaze/fusebox-example/master/assets/console-tab.jpg)  
+![Console tab](https://raw.githubusercontent.com/Devgaze/fusebox-example/master/src/assets/console-tab.png)  
