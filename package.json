@@ -31,6 +31,7 @@
     "rimraf": "^2.6.2",
     "system-fonts": "^1.1.5",
     "ts-node": "^3.3.0",
+    "tsc": "^1.20150623.0",
     "tslib": "^1.8.0",
     "typescript": "^2.6.1",
     "uglify-js": "^3.1.6",
