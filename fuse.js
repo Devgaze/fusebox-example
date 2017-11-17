@@ -15,7 +15,11 @@ const { FuseBox,
         QuantumPlugin,
         CopyPlugin } = require('fuse-box');
 
-let fuse, app, vendor, isProduction;
+const path = require('path');
+const express = require('express');
+
+let fuse, app, vendor;
+let isProduction = false;
 
 Sparky.task('config', () => {
 
@@ -24,16 +28,11 @@ Sparky.task('config', () => {
     output: './dist/$name.js',
     target: 'browser',
     hash: isProduction,
+    cache: !isProduction,
     tsConfig: 'tsconfig.json',
     plugins: [
-      CopyPlugin({
-        files: ['src/**/*.jpg'],
-        useDefault: true,
-        resolve: 'static',
-        dest: 'static',
-      }),
       ["node_modules.**css",
-        CSSResourcePlugin({dist: "dist/assets"}),
+        CSSResourcePlugin({dist: "dist", resolve: (f) => `/${f}` }),
         CSSPlugin()
       ],
       Ng2TemplatePlugin(),
@@ -43,20 +42,16 @@ Sparky.task('config', () => {
           importer: true,
           macros: { "~": "node_modules/" }}
         ),
-        PostCSSPlugin([
-          require('precss'),
-          require('autoprefixer'),
-          require("postcss-import")({ path: ["src"]})
-        ]),
-        RawPlugin()],
+        RawPlugin()
+      ],
       HTMLPlugin({ useDefault: false }),
-      [SassPlugin({importer: true, macros: { "~": "node_modules/" }}), CSSResourcePlugin({dist: "dist/assets"}), CSSPlugin()],
+      [SassPlugin({importer: true, macros: { "~": "node_modules/" }}), CSSResourcePlugin({ dist: "dist/assets", resolve: (f) => `/${f}` }), CSSPlugin()],
+      CSSPlugin(),
       WebIndexPlugin({ title: 'Example title', template: './src/index.html' }),
       TypeScriptHelpers(),
       JSONPlugin(),
       isProduction && QuantumPlugin({
         uglify: true,
-        hoisting: { names: ["tslib_1"] },
         treeshake: true
       }),
     ]
@@ -73,7 +68,14 @@ Sparky.task('config', () => {
 
 Sparky.task("clean", () => Sparky.src("dist/").clean("dist/"));
 Sparky.task("default", ["clean", "config", "watch:images"], () => {
-  fuse.dev({ port: 7000});
+  fuse.dev({ port: 7000 }, server => {
+    const dist = path.join(__dirname, '/dist');
+    const app = server.httpServer.app;
+    app.use(express.static(dist));
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(dist, '/index.html'));
+    });
+  });
   app.hmr({ socketURI: 'ws://localhost:7000' }).watch();
   return fuse.run();
 });
