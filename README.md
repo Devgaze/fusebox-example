@@ -34,12 +34,13 @@ Problem is you can't access `404` view by going directly to [http://localhost:70
 So, we have our in-house npm package which takes care of our corporate style guide. 
 That package containes `fonts` folder with our fonts and it the funny thing is, font's do get loaded in the page but I'm seeing following
 
-![Network tab](https://raw.githubusercontent.com/Devgaze/fusebox-example/master/src/assets/network-tab.jpg)  
+![Network tab](https://raw.githubusercontent.com/Devgaze/fusebox-example/master/src/assets/network-tab.png)
+
 
 and
 
-![Console tab](https://github.com/Devgaze/fusebox-example/blob/master/src/assets/console-tab.png)  
+![Console tab](https://raw.githubusercontent.com/Devgaze/fusebox-example/master/src/assets/console-tab.png)  
 
-What I've observed is that font files have not been copied to my `dist/assets` folder and I've seen few threads on this but they were not really useful for me.
 
-I understand it must be something due to bad configuration in `fuse.js`.
+## Note
+Unfortunately I didn't know how to reproduce last issue (css resources) as I'm not aware of an npm package that has fonts included and due to company policy I was unable to present our real life example.
